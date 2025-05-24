@@ -5,17 +5,22 @@
 
 int main(int argc, char* argv[])
 {
-    if (argc > 1)
-    {
-        pathToAudio = argv[1];
-        isPlaying = true;
-        SetWindowTitle(("FAudio - " + std::string(argv[1])).c_str());
-    }
     InitWindow(winW,winH, "FAudio");
 
     InitAudioDevice();
     rlImGuiSetup(true);
     SetTargetFPS(244);
+
+    if (argc > 1)
+    {
+        std::cout << "\n\n\n\nARG[1] ======================================== " << argv[1] << "\n";
+        pathToAudio = std::string(argv[1]);
+        music = ConvertAndLoadMusic(pathToAudio);
+        
+        isPlaying = true;
+        SetWindowTitle(("FAudio - " + std::string(argv[1])).c_str());
+    }
+    
 
     // Main 
     while (!WindowShouldClose())

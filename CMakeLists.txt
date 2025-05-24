@@ -32,6 +32,12 @@ add_custom_command(TARGET FAudio POST_BUILD
     "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Release/ffmpeg"
 )
 
+add_custom_command(TARGET FAudio POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+    "${CMAKE_SOURCE_DIR}/credits.txt"
+    "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Release/credits.txt"
+)
+
 if (WIN32)
     target_link_libraries(FAudio
         ${CMAKE_SOURCE_DIR}/lib/raylib.lib

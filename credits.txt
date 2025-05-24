@@ -1,0 +1,4 @@
+This application uses Dear ImGui (https://github.com/ocornut/imgui) licensed under the MIT License.
+
+This program uses FFmpeg (https://ffmpeg.org) under the LGPL/GPL license.
+FFmpeg is used for audio format conversion only (look at ./ffmpeg/ for license).
