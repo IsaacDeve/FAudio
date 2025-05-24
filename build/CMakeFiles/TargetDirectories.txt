@@ -1,0 +1,3 @@
+C:/Users/Zhopa/Documents/GitHub/FAudio/build/CMakeFiles/FAudio.dir
+C:/Users/Zhopa/Documents/GitHub/FAudio/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Zhopa/Documents/GitHub/FAudio/build/CMakeFiles/ZERO_CHECK.dir
