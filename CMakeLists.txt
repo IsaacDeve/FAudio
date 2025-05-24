@@ -5,18 +5,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Release)
 
-if (UNIX)
-    set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build/Release)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-endif()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/third_party/imgui)
 include_directories(${CMAKE_SOURCE_DIR}/include/rlImGui)
-#include_directories(${CMAKE_SOURCE_DIR}/third_party/discordsdk)
 
 link_directories(${CMAKE_SOURCE_DIR}/lib)
 
+# Executable
 add_executable(FAudio 
     src/main.cpp
     src/gui.cpp
@@ -29,11 +26,16 @@ add_executable(FAudio
     ${CMAKE_SOURCE_DIR}/include/rlImGui/rlImGui.cpp
 )
 
+add_custom_command(TARGET FAudio POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/ffmpeg"
+    "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Release/ffmpeg"
+)
 
 if (WIN32)
     target_link_libraries(FAudio
-    ${CMAKE_SOURCE_DIR}/lib/raylib.lib opengl32 gdi32 winmm user32
-    #${CMAKE_SOURCE_DIR}/third_party/discordsdk/lib/x86_64/discord_game_sdk.dll.lib
+        ${CMAKE_SOURCE_DIR}/lib/raylib.lib
+        opengl32 gdi32 winmm user32
     )
 else()
     target_link_libraries(FAudio raylib m dl pthread GL)
