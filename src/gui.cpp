@@ -1,5 +1,7 @@
 #include "gui.hpp"
 
+namespace fs = std::filesystem;
+
 std::string pathToAudio = "";
 
 Music music;
@@ -12,6 +14,8 @@ int seconds = 0;
 float musicCurrentTime = 0.0f;
 int minutesListened = 0.0f;
 int secondsListened = 0.0f;
+
+fs::path exeDir;
 
 
 float musicLengthStopped = 0.0f;
@@ -26,9 +30,7 @@ bool isPlaying = false;
 Music ConvertAndLoadMusic(const std::string& originalPath) {
     try
     {
-        namespace fs = std::filesystem;
-
-        fs::path ffmpegExe = fs::current_path() / "ffmpeg" / "bin" / "ffmpeg.exe";
+        fs::path ffmpegExe = exeDir / "ffmpeg" / "bin" / "ffmpeg.exe";
         fs::path tempWav = fs::temp_directory_path() / "faudio_temp.wav";
         fs::path batFile = fs::temp_directory_path() / "faudio_convert.bat";
 

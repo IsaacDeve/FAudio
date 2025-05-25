@@ -15,6 +15,9 @@ extern int seconds;
 extern float musicCurrentTime;
 extern int minutesListened;
 extern int secondsListened;
+
+extern std::filesystem::path exeDir;
+
 extern float musicLengthStopped;
 extern int winW;
 extern int winH;
